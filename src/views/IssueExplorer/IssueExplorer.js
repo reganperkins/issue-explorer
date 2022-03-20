@@ -43,7 +43,6 @@ const issuesReducer = (state, action) => {
         data: [],
       };
     case 'FETCH_SUCCESS':
-      console.log('here', action)
       return {
         ...state,
         isLoading: false,
@@ -70,7 +69,7 @@ function IssueExplorer() {
       try {
         const request = await fetch(queryUrl);
         const response = await request.json();
-        console.log('response', response)
+
         dispatchIssues({type: 'FETCH_SUCCESS', payload: response.items});
       } catch(err) {
         console.log('err', err)
