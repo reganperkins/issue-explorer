@@ -1,6 +1,7 @@
 import { useReducer, useState, useEffect } from 'react';
 import './IssueExplorer.module.scss';
 import SearchIssues from '../SearchIssues/SearchIssues';
+import IssuesGrid from '../../components/IssueExplorer/IssuesGrid/IssuesGrid';
 
 const searchReducer = (state, action) => {
   switch(action.type) {
@@ -32,21 +33,22 @@ const issuesReducer = (state, action) => {
         ...state,
         isLoading: true,
         errorMessage: '',
-        issues: [],
+        data: [],
       };
     case 'FETCH_ERROR':
       return {
         ...state,
         isLoading: false,
         errorMessage: action.payload,
-        issues: [],
+        data: [],
       };
     case 'FETCH_SUCCESS':
+      console.log('here', action)
       return {
         ...state,
         isLoading: false,
         errorMessage: '',
-        issues: action.payload,
+        data: action.payload,
       };
     default:
       throw new Error(`issue dispatch action ${action.type} is undefined`);
@@ -58,7 +60,7 @@ const GITHUB_ISSUES_ENDPOINT = 'https://api.github.com/search/issues?q=';
 function IssueExplorer() {
   const [searchInput, setSearchInput] = useState('');
   const [search, dispatchSearch] = useReducer(searchReducer, { repo: '', org: '', githubURL: '', error: false});
-  const [issues, dispatchIssues] = useReducer(issuesReducer, { issues: [], isLoading: false, errorMessage: false});
+  const [issues, dispatchIssues] = useReducer(issuesReducer, { data: [], isLoading: false, errorMessage: false});
 
   useEffect(() => {
     if (!search.repo || !search.org) return;
@@ -69,9 +71,9 @@ function IssueExplorer() {
         const request = await fetch(queryUrl);
         const response = await request.json();
         console.log('response', response)
-        dispatchIssues({type: 'FETCH_SUCCESS', payload: response});
+        dispatchIssues({type: 'FETCH_SUCCESS', payload: response.items});
       } catch(err) {
-        console.log(err)
+        console.log('err', err)
         dispatchIssues({type: 'FETCH_ERROR', payload: err});
       }
     }
@@ -86,6 +88,7 @@ function IssueExplorer() {
   };
 
   if (!search.githubURL) {
+    // can we update this component to have more of the search logic?
     return (
       <SearchIssues
         inputValue={ searchInput }
@@ -96,7 +99,9 @@ function IssueExplorer() {
   }
 
   return (
-    {issues}
+    <IssuesGrid
+      issues={issues.data}
+    />
   );
 }
 
