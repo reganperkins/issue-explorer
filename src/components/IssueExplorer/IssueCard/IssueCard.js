@@ -6,7 +6,9 @@ const IssueCard = ({ title, body, labels }) => (
     <div>
       <h2>{title}</h2>
     </div>
-    <p>{body}</p>
+    <div className={styles.body}>
+      <p>{body}</p>
+    </div>
     <div className={styles.labelsContainer}>
       {labels &&
         labels.map(label =>

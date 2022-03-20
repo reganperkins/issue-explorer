@@ -4,6 +4,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   padding: 1rem;
   word-wrap: break-word;
   border: 2px solid #000;
@@ -11,6 +12,10 @@
   p {
     @include truncateTextMultiline(3);
   }
+}
+
+.body {
+  flex-grow: 1;
 }
 
 .labelsContainer {
