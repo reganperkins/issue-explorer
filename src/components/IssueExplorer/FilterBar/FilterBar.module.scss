@@ -1,0 +1,12 @@
+.filterList {
+  display: flex;
+  list-style: none;
+}
+
+.filter {
+  margin-right: 1rem;
+
+  &.selected {
+    text-decoration: underline;
+  }
+}

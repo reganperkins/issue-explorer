@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid #000;
 }
 
 .commonPadding {
@@ -13,10 +14,24 @@
 }
 
 .filterBar {
-  padding: 0 1rem;
-
-  @media screen and (min-width: 500px) {
-    padding: 0 2rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0;
 }
 
+.closeBtn { // move this to button component
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  background: none;
+
+  svg {
+    width: 2rem;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

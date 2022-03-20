@@ -3,6 +3,7 @@ import styles from './IssueExplorer.module.scss';
 import SearchIssues from '../SearchIssues/SearchIssues';
 import IssuesGrid from '../../components/IssueExplorer/IssuesGrid/IssuesGrid';
 import FilterBar from '../../components/IssueExplorer/FilterBar/FilterBar';
+import { ReactComponent as CloseSvg } from '../../assets/icons/close.svg';
 
 const FILTERS = [ // should this go in a const file?
   { name: 'All Issues', query: '' },
@@ -34,7 +35,6 @@ const searchReducer = (state, action) => {
         return {
           ...state,
           filter: action.payload,
-          // filterParam: action.payload,
         };
     default:
       throw new Error(`search dispatch action ${action.type} is undefined`);
@@ -134,13 +134,19 @@ function IssueExplorer() {
         <span>{search.githubURL}</span>
       </header>
 
-      <div className={styles.filterBar}>
+      <div className={`${styles.filterBar} ${styles.commonPadding}`}>
         <FilterBar
           handleFilterSelect={handleFilterSelect}
-          handleClose={handleClose}
           selectedFilter={search.filter}
           filters={FILTERS}
         />
+        <button
+          type="button"
+          className={styles.closeBtn}
+          onClick={ handleClose }
+        >
+          <CloseSvg className={styles.svg} />
+        </button>
       </div>
 
       <main className={styles.commonPadding}>

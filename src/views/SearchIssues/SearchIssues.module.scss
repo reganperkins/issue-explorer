@@ -1,0 +1,15 @@
+.searchIssuesContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  input {
+    width: 550px;
+  }
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
