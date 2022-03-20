@@ -1,6 +1,6 @@
 import { useReducer, useState, useEffect } from 'react';
-import './App.module.scss';
-import Input from '../common/Input/Input';
+import './IssueExplorer.module.scss';
+import SearchIssues from '../SearchIssues/SearchIssues';
 
 const searchReducer = (state, action) => {
   switch(action.type) {
@@ -55,7 +55,7 @@ const issuesReducer = (state, action) => {
 
 const GITHUB_ISSUES_ENDPOINT = 'https://api.github.com/search/issues?q=';
 
-function App() {
+function IssueExplorer() {
   const [searchInput, setSearchInput] = useState('');
   const [search, dispatchSearch] = useReducer(searchReducer, { repo: '', org: '', githubURL: '', error: false});
   const [issues, dispatchIssues] = useReducer(issuesReducer, { issues: [], isLoading: false, errorMessage: false});
@@ -85,17 +85,19 @@ function App() {
     dispatchSearch({type: 'SUBMIT_SEARCH', payload: e.target.value});
   };
 
-  return (
-    <div className="App">
-      <h1>Github Issue Viewer</h1>
-      <Input
-        placeholder="Paste a link to a Github repo"
-        value={ searchInput }
-        onChange={handleSearchInput}
-        onEnterKeyPress={handleEnterKeyPress}
+  if (!search.githubURL) {
+    return (
+      <SearchIssues
+        inputValue={ searchInput }
+        handleSearchInput={handleSearchInput}
+        handleEnterKeyPress={handleEnterKeyPress}
       />
-    </div>
+    );
+  }
+
+  return (
+    {issues}
   );
 }
 
-export default App;
+export default IssueExplorer;
