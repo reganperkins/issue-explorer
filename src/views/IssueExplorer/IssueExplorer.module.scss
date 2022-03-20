@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commonPadding {
+  padding: 1rem;
+
+  @media screen and (min-width: 500px) {
+    padding: 2rem;
+  }
+}
+
+.filterBar {
+  padding: 0 1rem;
+
+  @media screen and (min-width: 500px) {
+    padding: 0 2rem;
+  }
+}
+
