@@ -1,7 +1,27 @@
+
+@import '../../../styles/mixins.scss';
+
 .card {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   word-wrap: break-word;
   border: 2px solid #000;
+
+  p {
+    @include truncateTextMultiline(3);
+  }
+}
+
+.labelsContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.label {
+  margin-right: 0.8rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
