@@ -9,8 +9,16 @@
   word-wrap: break-word;
   border: 2px solid #000;
 
-  p {
+  h2 {
+    margin-bottom: 1.2rem;
     @include truncateTextMultiline(3);
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 25px;
+    @include truncateTextMultiline(3);
+    margin-bottom: 1.2rem;
   }
 }
 
