@@ -1,14 +1,19 @@
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border: 2px solid #000;
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+  }
 }
 
 .commonPadding {
   padding: 1rem;
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 600px) {
     padding: 2rem;
   }
 }
@@ -20,7 +25,7 @@
   padding-bottom: 0;
 }
 
-.closeBtn { // move this to button component
+.closeBtn {
   display: inline-block;
   border: none;
   cursor: pointer;
@@ -28,7 +33,11 @@
   background: none;
 
   svg {
-    width: 2rem;
+    width: 1rem;
+
+    @media screen and (min-width: 600px) {
+      width: 2rem;
+    }
   }
 
   &:hover {

@@ -1,7 +1,6 @@
 import styles from './Input.module.scss';
 
 const Input = ({ onEnterKeyPress, onKeyPress, ...rest}) => {
-
   const handleKeyPress = (e) => {
     if (onEnterKeyPress && e.key === 'Enter') {
       onEnterKeyPress(e);
@@ -17,6 +16,6 @@ const Input = ({ onEnterKeyPress, onKeyPress, ...rest}) => {
       {...rest}
       onKeyPress={handleKeyPress} />
   );
-}
+};
 
 export default Input;

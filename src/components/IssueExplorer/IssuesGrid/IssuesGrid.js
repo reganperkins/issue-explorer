@@ -9,6 +9,6 @@ const IssuesGrid = ({ issues }) => (
       </li>
     ))}
   </ul>
-)
+);
 
 export default IssuesGrid;
